@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Media\asuka.png" />
+    <None Remove="Resources\Media\kanye west.jpg" />
+    <None Remove="Resources\Media\misato.png" />
+    <None Remove="Resources\Media\obunga.png" />
+    <None Remove="Resources\Media\rei.png" />
+    <None Remove="Resources\Media\ryan gosling.jpg" />
+    <None Remove="Resources\Media\siren.mp3" />
+    <None Remove="Resources\Media\siren.wav" />
+    <None Remove="Resources\Media\strykalo.png" />
+    <None Remove="Resources\Media\Z.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Media\asuka.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\kanye west.jpg" />
+    <Resource Include="Resources\Media\misato.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\obunga.png" />
+    <Resource Include="Resources\Media\rei.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\ryan gosling.jpg" />
+    <Resource Include="Resources\Media\siren.mp3">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\siren.wav">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\strykalo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Media\Z.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SolidSoils.Arduino.Client" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="View\Pages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resource1.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
