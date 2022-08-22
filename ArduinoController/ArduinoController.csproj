@@ -46,11 +46,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="SolidSoils.Arduino.Client" Version="1.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="View\Pages\" />
   </ItemGroup>
 
   <ItemGroup>
