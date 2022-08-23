@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArduinoController.Utilities.Configuration
 {
@@ -26,6 +22,7 @@ namespace ArduinoController.Utilities.Configuration
 
         public const string ValidationFileType = "ac_config";
 
+        [JsonIgnore]
         public bool IsValid => FileType == ValidationFileType;
 
         public Config(string name, int analogPortCount, int digitalPortCount)

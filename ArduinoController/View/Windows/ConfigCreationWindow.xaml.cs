@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ArduinoController.Utilities;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ArduinoController.View.Windows
 {
@@ -29,7 +20,7 @@ namespace ArduinoController.View.Windows
 
         private void ButtonCreateConfig_Click(object sender, RoutedEventArgs e)
         {
-
+            ProjectSaving.CreateConfig(TextBoxConfigName.Text, Convert.ToInt32(TextBoxAnalogPorts.Text), Convert.ToInt32(TextBoxDigitalPorts.Text));
         }
 
         private void TextBoxDigitalPorts_PreviewTextInput(object sender, TextCompositionEventArgs e)

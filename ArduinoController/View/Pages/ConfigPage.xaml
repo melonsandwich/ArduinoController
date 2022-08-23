@@ -1,0 +1,61 @@
+﻿<Page x:Class="ArduinoController.View.Pages.ConfigPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ArduinoController.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="1200"
+      Title="ConfigPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="Действия" Margin="10,10,10,10">
+            <DockPanel LastChildFill="False" Margin="10,10,10,10">
+                <ListBox DockPanel.Dock="Top" Height="363">
+                    <ListViewItem Content="Default"/>
+                </ListBox>
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        DockPanel.Dock="Bottom">
+                    <Button Content="Добавить" Width="120" Margin="0,0,10,0"/>
+                    <Button Content="Удалить выбранное" Width="120"/>
+                </StackPanel>
+            </DockPanel>
+        </GroupBox>
+        <GroupBox Header="Порты Arduino" Margin="10" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="Аналоговые" Margin="10">
+                    <ScrollViewer>
+                        <ListView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ComboBox>
+                                            
+                                        </ComboBox>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                            <ListViewItem />
+                        </ListView>
+                    </ScrollViewer>
+                </GroupBox>
+
+                <GroupBox Header="Цифровые" Margin="10" Grid.Column="1">
+                    <ScrollViewer>
+
+                    </ScrollViewer>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Page>

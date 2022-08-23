@@ -3,10 +3,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArduinoController.Utilities
 {
@@ -15,9 +11,9 @@ namespace ArduinoController.Utilities
         public static List<Config> LoadedConfigs { get; set; } = new List<Config>();
 
         private static string _localData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        public static readonly string ConfigFolderPath = _localData + @"\Configs";
+        public static readonly string ConfigFolderPath = _localData + @"\ArduinoController\Configs";
 
-        public void CreateConfigFolderIfExists()
+        public static void CreateConfigFolderIfExists()
         { 
             if (!IsConfigFolderPresent())
             {
@@ -25,9 +21,9 @@ namespace ArduinoController.Utilities
             }
         }
 
-        public bool IsConfigFolderPresent() => Directory.Exists(ConfigFolderPath);
+        public static bool IsConfigFolderPresent() => Directory.Exists(ConfigFolderPath);
  
-        public void CreateConfig(string name, int analogPortCount, int digitalPortCount)
+        public static void CreateConfig(string name, int analogPortCount, int digitalPortCount)
         {
             Config config = new Config(name, analogPortCount, digitalPortCount);
             LoadedConfigs.Add(config);
@@ -39,7 +35,7 @@ namespace ArduinoController.Utilities
             }
         }
 
-        public void ScanConfigs()
+        public static void ScanConfigs()
         {
             DirectoryInfo info = new DirectoryInfo(ConfigFolderPath);
             foreach (var file in Directory.EnumerateFiles(ConfigFolderPath, "*.json"))
@@ -53,7 +49,7 @@ namespace ArduinoController.Utilities
             }
         }
 
-        public void DeleteConfig()
+        public static void DeleteConfig()
         {
             // TODO
         }

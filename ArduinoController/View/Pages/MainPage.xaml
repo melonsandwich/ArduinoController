@@ -48,17 +48,16 @@
                    Margin="0,0,0,80"
                    HorizontalAlignment="Center" Height="40"/>
 
-
-
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="0" VerticalAlignment="Top" Margin="0,175,0,0" Grid.Column="1" Height="125">
             <Button Content="_Создать конфигурацию" Name="ButtonCreateConfig" HorizontalAlignment="Center" Width="300" Margin="0,0,0,5" Click="ButtonCreateConfig_Click"/>
             <Button Content="_Загрузить конфигурацию" Name="ButtonLoadConfig" HorizontalAlignment="Center" Width="300" Margin="0,0,0,5" Click="ButtonLoadConfig_Click"/>
-            <Button Content="_Настройки" Name="ButtonSettings" HorizontalAlignment="Center" Width="300" Margin="0,0,0,5" Click="ButtonSettings_Click" IsEnabled="False"/>
+            <Button Content="_Настройки" Name="ButtonSettings" HorizontalAlignment="Center" Width="300" Margin="0,0,0,5" Click="ButtonSettings_Click" IsEnabled="True"/>
             <Button Content="_Обучение" Name="ButtonTutorial" HorizontalAlignment="Center" Width="300" Margin="0,0,0,5" Click="ButtonTutorial_Click" IsEnabled="False"/>
             <Button Content="_Выход" Name="ButtonExit" HorizontalAlignment="Center" Width="300" Margin="0,0,0,5" Click="ButtonExit_Click"/>
         </StackPanel>
-
+        
+        <!--
         <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="31,395,0,0" Grid.RowSpan="2" Width="279">
             <GroupBox Header="Статус подключения к Arduino" >
                 <Grid>
@@ -78,6 +77,6 @@
                     </StackPanel>
                 </Grid>
             </GroupBox>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Page>
