@@ -1,5 +1,6 @@
 ﻿using Solid.Arduino;
 using Solid.Arduino.Firmata;
+using System.IO.Ports;
 using System.Threading;
 using System.Windows;
 
@@ -9,18 +10,11 @@ namespace ArduinoController.Utilities
     {
         public ISerialConnection SerialConnection { get; set; }
 
+        public static SerialPort SerialPort { get; set; }
+
         public ConnectionManager()
         {
-            SerialConnection = GetConnection();
-
-            if (SerialConnection != null)
-            {
-                using (var session = new ArduinoSession(SerialConnection))
-                {
-                    PerformBasicTest(session, out string output);
-                    MessageBox.Show(output);
-                }
-            }
+            
         }
 
         private static ISerialConnection GetConnection()

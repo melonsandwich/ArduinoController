@@ -6,7 +6,7 @@ using System.IO;
 
 namespace ArduinoController.Utilities
 {
-    public class ProjectSaving
+    public static class ProjectSaving
     {
         public static List<Config> LoadedConfigs { get; set; } = new List<Config>();
 
@@ -23,7 +23,7 @@ namespace ArduinoController.Utilities
 
         public static bool IsConfigFolderPresent() => Directory.Exists(ConfigFolderPath);
  
-        public static void CreateConfig(string name, int analogPortCount, int digitalPortCount)
+        public static Config CreateConfig(string name, int analogPortCount, int digitalPortCount)
         {
             Config config = new Config(name, analogPortCount, digitalPortCount);
             LoadedConfigs.Add(config);
@@ -33,11 +33,12 @@ namespace ArduinoController.Utilities
                 string json = JsonConvert.SerializeObject(config);
                 file.Write(json);
             }
+
+            return config;
         }
 
         public static void ScanConfigs()
         {
-            DirectoryInfo info = new DirectoryInfo(ConfigFolderPath);
             foreach (var file in Directory.EnumerateFiles(ConfigFolderPath, "*.json"))
             {
                 string contents = File.ReadAllText(file);

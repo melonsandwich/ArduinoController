@@ -1,4 +1,5 @@
 ﻿using ArduinoController.Utilities;
+using ArduinoController.Utilities.SettingsControls;
 using ArduinoController.View.Windows;
 using System;
 using System.Media;
@@ -25,6 +26,20 @@ namespace ArduinoController.View.Pages
             InitializeComponent();
             LoadingWindow.Call();
             SetCharacter(0);
+
+            // com-port label
+            if (Settings.Current.SelectedCOMPort == string.Empty)
+            {
+                LabelSelectedCOMPort.Content = "COM-порт не выбран! Пожалуйста, откройте настройки для установки COM-порта!";
+                LabelSelectedCOMPort.Foreground = Brushes.Red;
+                LabelSelectedCOMPort.FontWeight = FontWeights.Bold;
+            }
+            else
+            {
+                LabelSelectedCOMPort.Content = $"Текущий COM-порт: {Settings.Current.SelectedCOMPort}";
+                LabelSelectedCOMPort.Foreground = Brushes.Black;
+                LabelSelectedCOMPort.FontWeight = FontWeights.Normal;
+            }
         }
 
         private CharacterSelection.Character CurrentCharacter => CharacterSelection.Container[_currentCharacterIndex];

@@ -56,7 +56,16 @@
             <Button Content="_Обучение" Name="ButtonTutorial" HorizontalAlignment="Center" Width="300" Margin="0,0,0,5" Click="ButtonTutorial_Click" IsEnabled="False"/>
             <Button Content="_Выход" Name="ButtonExit" HorizontalAlignment="Center" Width="300" Margin="0,0,0,5" Click="ButtonExit_Click"/>
         </StackPanel>
-        
+
+        <Label Name="LabelSelectedCOMPort" 
+               Content="Текущий COM-порт: " 
+               VerticalAlignment="Bottom" 
+               HorizontalAlignment="Right"
+               Grid.Column="2"
+               Grid.ColumnSpan="1"
+               Grid.RowSpan="2"
+               Grid.Row="1"/>
+
         <!--
         <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="31,395,0,0" Grid.RowSpan="2" Width="279">
             <GroupBox Header="Статус подключения к Arduino" >

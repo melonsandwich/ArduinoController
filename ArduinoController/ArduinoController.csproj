@@ -12,6 +12,7 @@
     <None Remove="Resources\Media\kanye west.jpg" />
     <None Remove="Resources\Media\misato.png" />
     <None Remove="Resources\Media\obunga.png" />
+    <None Remove="Resources\Media\refresh_icon.png" />
     <None Remove="Resources\Media\rei.png" />
     <None Remove="Resources\Media\ryan gosling.jpg" />
     <None Remove="Resources\Media\siren.mp3" />
@@ -29,6 +30,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\Media\obunga.png" />
+    <Resource Include="Resources\Media\refresh_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\Media\rei.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

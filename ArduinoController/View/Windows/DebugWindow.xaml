@@ -1,0 +1,22 @@
+﻿<Window x:Class="ArduinoController.View.Windows.DebugWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArduinoController.View.Windows"
+        mc:Ignorable="d"
+        Title="DebugWindow" Height="450" Width="400">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="10">
+            <Button Content="delete settings.json" Name="ButtonDeleteSettingsJson" Margin="0,0,0,10" Click="ButtonDeleteSettingsJson_Click"/>
+            <Button Content="enable jumpscare (NO AT ANY COST!!!)" Name="ButtonEnableJumpscare" Margin="0,0,0,10" Click="ButtonEnableJumpscare_Click"/>
+        </StackPanel>
+
+        <Button Content="reload the program" 
+                VerticalAlignment="Bottom" 
+                Margin="10"
+                Foreground="White"
+                Background="Red"
+                BorderThickness="0"/>
+    </Grid>
+</Window>

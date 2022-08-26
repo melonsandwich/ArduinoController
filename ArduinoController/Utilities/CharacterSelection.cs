@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ArduinoController.Utilities.SettingsControls;
+using System.Collections.Generic;
 
 namespace ArduinoController.Utilities
 {
@@ -12,7 +13,7 @@ namespace ArduinoController.Utilities
         {
             Add("Misato Katsuragi", "misato.png");
             Add("Ye (Kanye West)", "kanye west.jpg");
-            Add("obunga", "obunga.png");
+            if (Settings.Current.JumpscareEnabled) Add("obunga", "obunga.png");
             Add("Z", "Z.jpg");
             Add("Ryan Gosling", "ryan gosling.jpg");
             Add("Valentin Strykalo", "strykalo.png");
