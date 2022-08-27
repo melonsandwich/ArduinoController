@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Linq;
 
 namespace ArduinoController.Utilities
 {
@@ -47,6 +48,15 @@ namespace ArduinoController.Utilities
                 if (config == null || !config.IsValid) return;
 
                 LoadedConfigs.Add(config);
+            }
+        }
+
+        public static void SaveConfig(Config config)
+        {
+            using (StreamWriter file = File.CreateText(ConfigFolderPath + @$"\{config.Name}.json"))
+            {
+                string json = JsonConvert.SerializeObject(config);
+                file.Write(json);
             }
         }
 

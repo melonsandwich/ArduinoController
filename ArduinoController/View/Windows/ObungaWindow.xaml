@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArduinoController.View.Windows"
         mc:Ignorable="d"
-        Title="GET OBUNGED YOU BASTARD" Height="250" Width="250"
+        Title="GET OBUNGED BRUH" Height="250" Width="250"
         WindowStyle="ToolWindow"
         MouseEnter="Window_MouseEnter">
     <Grid>
         <Image Source="/Resources/Media/obunga.png" Stretch="Fill"/>
-        <Label Content="GET OBUNGED YOU BASTARD" FontFamily="Comic Sans MS" FontWeight="ExtraBold" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Red"/>
-        <Label Content="GET OBUNGED YOU BASTARD" FontFamily="Comic Sans MS" FontWeight="ExtraBold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Red"/>
+        <Label Content="GET OBUNGED BRUH" FontFamily="Comic Sans MS" FontWeight="ExtraBold" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="Red"/>
+        <Label Content="GET OBUNGED BRUH" FontFamily="Comic Sans MS" FontWeight="ExtraBold" FontSize="15" VerticalAlignment="Bottom" HorizontalAlignment="Center" Foreground="Red"/>
     </Grid>
 </Window>

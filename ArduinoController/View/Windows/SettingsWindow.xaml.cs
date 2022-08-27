@@ -1,5 +1,6 @@
 ﻿using ArduinoController.Utilities;
 using ArduinoController.Utilities.SettingsControls;
+using System;
 using System.Diagnostics;
 using System.IO.Ports;
 using System.Windows;
@@ -19,6 +20,7 @@ namespace ArduinoController.View.Windows
         {
             InitializeComponent();
             ComboBoxSelectedCOMPort.ItemsSource = _portNames;
+            TextBoxBaudRate.Text = Convert.ToString(Settings.Current.BaudRate);
 
             for (int i = 0; i < _portNames.Length; i++)
             {
@@ -37,6 +39,20 @@ namespace ArduinoController.View.Windows
         private void ButtonApplySettings_Click(object sender, RoutedEventArgs e)
         {
             Settings.Current.SelectedCOMPort = _portNames[ComboBoxSelectedCOMPort.SelectedIndex];
+            try
+            {
+                Settings.Current.BaudRate = Convert.ToInt32(TextBoxBaudRate.Text);
+                if (Settings.Current.BaudRate < 0 || Settings.Current.BaudRate > 115200)
+                {
+                    MessageBox.Show("Неприемлимое значение Baud-частоты!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Неприемлимое значение Baud-частоты!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             Settings.SaveSettings();
             Close();
         }
@@ -52,7 +68,5 @@ namespace ArduinoController.View.Windows
                 _debugWindow = new DebugWindow();
             _debugWindow.Show();
         }
-
-        //private
     }
 }

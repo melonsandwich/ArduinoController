@@ -18,7 +18,6 @@
     <None Remove="Resources\Media\siren.mp3" />
     <None Remove="Resources\Media\siren.wav" />
     <None Remove="Resources\Media\strykalo.png" />
-    <None Remove="Resources\Media\Z.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,7 +45,6 @@
     <Resource Include="Resources\Media\strykalo.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Media\Z.jpg" />
   </ItemGroup>
 
   <ItemGroup>

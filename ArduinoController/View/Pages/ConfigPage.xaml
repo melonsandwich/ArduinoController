@@ -15,7 +15,7 @@
             <ColumnDefinition Width="93*"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Header="Действия" Margin="10,10,10,10">
+        <GroupBox Header="Действия (пока не работают, ждите следующих обновлений)" Margin="10,10,10,10">
             <DockPanel LastChildFill="False" Margin="10,10,10,10">
                 <ListBox DockPanel.Dock="Top" Height="363">
                     <ListViewItem Content="Default"/>
@@ -39,7 +39,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <GroupBox Header="Аналоговые" Margin="10,10,10,10" >
+                <!--<GroupBox Header="Аналоговые" Margin="10,10,10,10" >
                     <ScrollViewer>
                         <ListView Name="ListViewAnalogPins"
                                   ItemsSource="{Binding}">
@@ -47,7 +47,12 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Label Content="{Binding Number}"/>
-                                        <TextBox Text="{Binding Value}"/>
+                                        <ComboBox Name="ComboBoxPinMode" Width="100" SelectionChanged="ComboBoxPinMode_SelectionChanged_1">
+                                            <ComboBoxItem>Input</ComboBoxItem>
+                                            <ComboBoxItem>Output</ComboBoxItem>
+                                            <ComboBoxItem>Input Pullup</ComboBoxItem>
+                                        </ComboBox>
+                                        <TextBox Text="{Binding Value}" Width="100" TextChanged="TextBox_TextChanged"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -63,23 +68,62 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Label Content="{Binding Number}"/>
-                                        <TextBox Text="{Binding Value}"/>
+                                        <ComboBox Name="ComboBoxPinMode" Width="100" SelectedIndex="{Binding PinMode}" SelectionChanged="ComboBoxPinMode_SelectionChanged">
+                                            <ComboBoxItem>Input</ComboBoxItem>
+                                            <ComboBoxItem>Output</ComboBoxItem>
+                                            <ComboBoxItem>Input Pullup</ComboBoxItem>
+                                        </ComboBox>
+                                        <TextBox Text="{Binding Value}" Width="100" TextChanged="TextBox_TextChanged_1"/>
+
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </ScrollViewer>
-                </GroupBox>
+                </GroupBox>-->
 
-                <Button Name="ButtonSendToArduino" 
+        <Button Name="ButtonSendToArduino" 
                         Content="Отправить на Arduino" 
-                        Grid.ColumnSpan="2" 
+                        Grid.ColumnSpan="1" 
                         Grid.Row="1"
                         Grid.RowSpan="1" Click="ButtonSendToArduino_Click"/>
-            </Grid>
-        </GroupBox>
+
+        <Button Name="ButtonSaveConfig" 
+                        Content="Сохранить конфигурацию" 
+                        IsEnabled="False"
+                        Grid.Column="1" 
+                        Grid.Row="1"
+                        Grid.RowSpan="1" Click="ButtonSaveConfig_Click"/>
+    </Grid>
+    </GroupBox>
+
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
+            <StackPanel Orientation="Vertical">
+                <Label Content="Тип пина: "/>
+                <ComboBox Name="ComboBoxPinType">
+                    <ComboBoxItem>Аналоговый</ComboBoxItem>
+                    <ComboBoxItem>Цифровой</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label Content="Пин: "/>
+                <TextBox Name="TextBoxPin" Height="22"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label Content="Режим: "/>
+                <ComboBox Name="ComboBoxPinMode">
+                    <ComboBoxItem>INPUT</ComboBoxItem>
+                    <ComboBoxItem>OUTPUT</ComboBoxItem>
+                    <ComboBoxItem>INPUT_PULLUP</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label Content="Значение: "/>
+                <TextBox Name="TextBlockValue" Height="22"/>
+            </StackPanel>
+        </StackPanel>
         <Border Grid.Column="2" Background="Black">
-            <TextBlock Name="TextBlockConsolePrompt" Foreground="White"/>
+            <TextBlock Name="TextBlockConsolePrompt" Foreground="White" FontFamily="Consolas"/>
         </Border>
     </Grid>
 </Page>

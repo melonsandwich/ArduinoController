@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArduinoController"
         mc:Ignorable="d"
-        Title="ArduinoController" Height="520" Width="1300"
+        Title="ArduinoController" Height="520" Width="1500"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Frame Name="MainFrame"/>
+        <Frame Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

@@ -12,5 +12,10 @@ namespace ArduinoController.Utilities.Configuration
 
         [JsonProperty("value")]
         public int Value { get; set; }
+
+        public Port(int id)
+        {
+            ID = id;
+        }
     }
 }

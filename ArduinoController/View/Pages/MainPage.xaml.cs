@@ -127,7 +127,7 @@ namespace ArduinoController.View.Pages
 
         private void ButtonLoadConfig_Click(object sender, RoutedEventArgs e)
         {
-
+            new ConfigLoadWindow((MainWindow)_owner).Show();
         }
 
         private void ButtonSettings_Click(object sender, RoutedEventArgs e)
@@ -144,6 +144,11 @@ namespace ArduinoController.View.Pages
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void ButtonCopyProtocolCode_Click(object sender, RoutedEventArgs e)
+        {
+            new ProtocolCodeCopyWindow().Show();
         }
     }
 }

@@ -9,9 +9,14 @@ namespace ArduinoController.Utilities.Configuration
         public string? Name { get; set; }
 
         [JsonProperty("analog_ports")]
-        public List<Port>? AnalogPorts { get; set; }
+        public List<Port>? AnalogPorts { get; set; } = new List<Port>();
 
         [JsonProperty("digitalPorts")]
-        public List<Port>? DigitalPorts { get; set; }
+        public List<Port>? DigitalPorts { get; set; } = new List<Port>();
+
+        public ActionObject(string name)
+        {
+            Name = name;
+        }
     }
 }

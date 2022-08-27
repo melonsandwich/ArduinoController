@@ -14,8 +14,6 @@ namespace ArduinoController.Utilities
             Add("Misato Katsuragi", "misato.png");
             Add("Ye (Kanye West)", "kanye west.jpg");
             if (Settings.Current.JumpscareEnabled) Add("obunga", "obunga.png");
-            Add("Z", "Z.jpg");
-            Add("Ryan Gosling", "ryan gosling.jpg");
             Add("Valentin Strykalo", "strykalo.png");
             Add("Rei Ayanami", "rei.png");
             Add("Asuka Sohryu Langley", "asuka.png");

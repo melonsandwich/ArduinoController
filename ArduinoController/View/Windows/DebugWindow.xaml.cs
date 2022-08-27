@@ -39,6 +39,7 @@ namespace ArduinoController.View.Windows
         {
             Settings.Current.JumpscareEnabled = !Settings.Current.JumpscareEnabled;
             SetJumpscareButtonTextOnValue(Settings.Current.JumpscareEnabled);
+            Settings.SaveSettings();
         }
 
         private void SetJumpscareButtonTextOnValue(bool value)
@@ -46,16 +47,22 @@ namespace ArduinoController.View.Windows
             SolidColorBrush defaultBrush = (SolidColorBrush)ButtonEnableJumpscare.Background;
             if (value)
             {
-                ButtonEnableJumpscare.Content = "enable jumpscare (NO AT ANY COST!!!) requires reload";
+                ButtonEnableJumpscare.Content = "disable jumpscare (yep do it) requires reload";
                 ButtonEnableJumpscare.Foreground = Brushes.White;
                 ButtonEnableJumpscare.Background = Brushes.Red;
             }
             else
             {
-                ButtonEnableJumpscare.Content = "disable jumpscare (yep do it) requires reload";
+                ButtonEnableJumpscare.Content = "enable jumpscare (NO AT ANY COST!!!) requires reload";
                 ButtonEnableJumpscare.Foreground = Brushes.White;
                 ButtonEnableJumpscare.Background = defaultBrush;
             }
+        }
+
+        private void ButtonProgramReboot_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
         }
     }
 }

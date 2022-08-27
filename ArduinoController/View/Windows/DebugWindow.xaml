@@ -12,11 +12,12 @@
             <Button Content="enable jumpscare (NO AT ANY COST!!!)" Name="ButtonEnableJumpscare" Margin="0,0,0,10" Click="ButtonEnableJumpscare_Click"/>
         </StackPanel>
 
-        <Button Content="reload the program" 
+        <Button Content="reboot the program"
+                Name="ButtonProgramReboot"
                 VerticalAlignment="Bottom" 
                 Margin="10"
                 Foreground="White"
                 Background="Red"
-                BorderThickness="0"/>
+                BorderThickness="0" Click="ButtonProgramReboot_Click"/>
     </Grid>
 </Window>

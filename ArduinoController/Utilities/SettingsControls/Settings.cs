@@ -11,11 +11,16 @@ namespace ArduinoController.Utilities.SettingsControls
         [JsonProperty("selected_com_port")]
         public string SelectedCOMPort { get; set; } = string.Empty;
 
+        [JsonProperty("baud_rate")]
+        public int BaudRate { get; set; } = 9600;
+
         [JsonProperty("jumpscare_enabled")]
         public bool JumpscareEnabled { get; set; } = false;
 
         private static string _localData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         public static readonly string ConfigFolderPath = _localData + @"\ArduinoController\";
+
+        public static event EventHandler? SettingsSave;
 
         public static bool IsSettingsFilePresent() => File.Exists(ConfigFolderPath + $@"\settings.json");
 
@@ -36,6 +41,7 @@ namespace ArduinoController.Utilities.SettingsControls
                 string json = JsonConvert.SerializeObject(Current);
                 file.Write(json);
             }
+            SettingsSave?.Invoke(Current, EventArgs.Empty);
         }
 
         public static Settings? LoadSettingsFile()
