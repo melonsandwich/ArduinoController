@@ -15,20 +15,20 @@
             <ColumnDefinition Width="93*"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Header="Действия (пока не работают, ждите следующих обновлений)" Margin="10,10,10,10">
+        <GroupBox Header="Действия (пока не работают, ждите следующих обновлений)" Margin="10,10,10,10" IsEnabled="False">
             <DockPanel LastChildFill="False" Margin="10,10,10,10">
                 <ListBox DockPanel.Dock="Top" Height="363">
                     <ListViewItem Content="Default"/>
                 </ListBox>
                 <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        DockPanel.Dock="Bottom">
+                            HorizontalAlignment="Center"
+                            DockPanel.Dock="Bottom">
                     <Button Content="Добавить" Width="120" Margin="0,0,10,0"/>
                     <Button Content="Удалить выбранное" Width="120"/>
                 </StackPanel>
             </DockPanel>
         </GroupBox>
-        <GroupBox Header="Порты Arduino" Margin="10,10,10,10" Grid.Column="1" Grid.ColumnSpan="1">
+        <GroupBox Header="" Margin="10,10,10,10" Grid.Column="1" Grid.ColumnSpan="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
@@ -82,46 +82,85 @@
                     </ScrollViewer>
                 </GroupBox>-->
 
-        <Button Name="ButtonSendToArduino" 
+                <!--<Button Name="ButtonSendToArduino" 
                         Content="Отправить на Arduino" 
                         Grid.ColumnSpan="1" 
                         Grid.Row="1"
                         Grid.RowSpan="1" Click="ButtonSendToArduino_Click"/>
 
-        <Button Name="ButtonSaveConfig" 
+                <Button Name="ButtonSaveConfig" 
                         Content="Сохранить конфигурацию" 
                         IsEnabled="False"
                         Grid.Column="1" 
                         Grid.Row="1"
-                        Grid.RowSpan="1" Click="ButtonSaveConfig_Click"/>
-    </Grid>
-    </GroupBox>
+                        Grid.RowSpan="1" Click="ButtonSaveConfig_Click"/>-->
 
-    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
-            <StackPanel Orientation="Vertical">
-                <Label Content="Тип пина: "/>
-                <ComboBox Name="ComboBoxPinType">
-                    <ComboBoxItem>Аналоговый</ComboBoxItem>
-                    <ComboBoxItem>Цифровой</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <Label Content="Пин: "/>
-                <TextBox Name="TextBoxPin" Height="22"/>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <Label Content="Режим: "/>
-                <ComboBox Name="ComboBoxPinMode">
-                    <ComboBoxItem>INPUT</ComboBoxItem>
-                    <ComboBoxItem>OUTPUT</ComboBoxItem>
-                    <ComboBoxItem>INPUT_PULLUP</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
-            <StackPanel Orientation="Vertical">
-                <Label Content="Значение: "/>
-                <TextBox Name="TextBlockValue" Height="22"/>
-            </StackPanel>
-        </StackPanel>
+                <CheckBox Content="Автоматически применять значение ползунка установки угла сервопривода" 
+                          Name="CheckBoxAutoChangeValues"
+                          HorizontalAlignment="Right" Grid.Column="1" Margin="0,0,0,397"
+                          IsChecked="True"
+                          Checked="CheckBoxAutoChangeValues_Checked"
+                          Unchecked="CheckBoxAutoChangeValues_Unchecked"/>
+
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                    <StackPanel Orientation="Vertical" Margin="0,0,0,25">
+                        <Label Content="Подключиться к сервоприводу (укажите цифровой пин):"/>
+                        <DockPanel>
+                            <TextBox Name="TextBoxServoAttach" DockPanel.Dock="Left" Width="230" Margin="0,0,5,0"/>
+                            <Button Name="ButtonServoAttach" Content="Подключиться" DockPanel.Dock="Right" Click="ButtonServoAttach_Click"/>
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical"  Margin="0,0,0,25">
+                        <Label Content="Установка угла сервопривода:"/>
+                        <DockPanel>
+                            <Slider Name="SliderServoAngle"
+                                    AutoToolTipPlacement="TopLeft" 
+                                    AutoToolTipPrecision="0"
+                                    IsSnapToTickEnabled="True"
+                                    TickFrequency="1"
+                                    Width="300" 
+                                    VerticalAlignment="Center"
+                                    Minimum="0"
+                                    Maximum="180"
+                                    ValueChanged="Slider_ValueChanged"/>
+                            <Label Name="LabelServoAngle" Content="0"/>
+                        </DockPanel>
+                        <Button Content="Установить" Name="ButtonWriteAngle" Click="ButtonWriteAngle_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,0,0,25">
+                        <Label Content="Установить угол сервопривода в микросекундах:"/>
+                        <DockPanel>
+                            <TextBox Name="TextBoxWriteMicroseconds" DockPanel.Dock="Left" Width="230" Margin="0,0,5,0"/>
+                            <Button Name="ButtonWriteMicroseconds" Content="Установить" DockPanel.Dock="Right" Click="ButtonWriteMicroseconds_Click"/>
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Button Name="ButtonRead"
+                                Margin="0,0,0,5"
+                                Content="Servo.read()"
+                                FontFamily="Consolas"
+                                Click="ButtonRead_Click"/>
+
+                        <Button Name="ButtonAttached"
+                                Margin="0,0,0,5"
+                                Content="Servo.attached()"
+                                FontFamily="Consolas"
+                                Click="ButtonAttached_Click"/>
+
+                        <Button Name="ButtonDetach"
+                                Margin="0,0,0,0"
+                                Content="Отключиться от сервопривода"
+                                Foreground="White"
+                                Background="DarkRed"
+                                FontWeight="DemiBold"
+                                Click="ButtonDetach_Click"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+
+
         <Border Grid.Column="2" Background="Black">
             <TextBlock Name="TextBlockConsolePrompt" Foreground="White" FontFamily="Consolas"/>
         </Border>

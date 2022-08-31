@@ -14,6 +14,9 @@ namespace ArduinoController.Utilities.SettingsControls
         [JsonProperty("baud_rate")]
         public int BaudRate { get; set; } = 9600;
 
+        [JsonProperty("slider_value_update_frequency")]
+        public int SliderValueUpdateFrequency { get; set; } = 500;
+
         [JsonProperty("jumpscare_enabled")]
         public bool JumpscareEnabled { get; set; } = false;
 

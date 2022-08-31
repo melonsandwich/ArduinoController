@@ -21,6 +21,7 @@ namespace ArduinoController.View.Windows
             InitializeComponent();
             ComboBoxSelectedCOMPort.ItemsSource = _portNames;
             TextBoxBaudRate.Text = Convert.ToString(Settings.Current.BaudRate);
+            TextBoxSliderValueFrequencyUpdate.Text = Convert.ToString(Settings.Current.SliderValueUpdateFrequency);
 
             for (int i = 0; i < _portNames.Length; i++)
             {
@@ -51,6 +52,21 @@ namespace ArduinoController.View.Windows
             catch (FormatException)
             {
                 MessageBox.Show("Неприемлимое значение Baud-частоты!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            try
+            {
+                Settings.Current.SliderValueUpdateFrequency = Convert.ToInt32(TextBoxSliderValueFrequencyUpdate.Text);
+                if (Settings.Current.SliderValueUpdateFrequency < 200 || Settings.Current.SliderValueUpdateFrequency > 5000)
+                {
+                    MessageBox.Show("Некорректное значение!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Некорректное значение!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             Settings.SaveSettings();

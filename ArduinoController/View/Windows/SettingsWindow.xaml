@@ -24,6 +24,7 @@
             <Label Content="Baud-частота: " Height="27"/>
             <Label Content="Папка с конфигурациями: " Height="27"/>
             <Label Content="Окно отладки: " Height="27"/>
+            <Label Content="Частота обновления значения слайдера: " Height="27"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,10" Grid.RowSpan="2">
             <StackPanel Orientation="Horizontal">
@@ -35,6 +36,7 @@
             <TextBox Name="TextBoxBaudRate" Height="27"/>
             <Button Content="Открыть" Name="ButtonOpenConfigFolder" Height="27" Click="ButtonOpenConfigFolder_Click"/>
             <Button Content="Открыть" Name="ButtonOpenDebugWindow" Height="27" Click="ButtonOpenDebugWindow_Click"/>
+            <TextBox Name="TextBoxSliderValueFrequencyUpdate" Height="27"/>
         </StackPanel>
 
         <Button Name="ButtonApplySettings" 

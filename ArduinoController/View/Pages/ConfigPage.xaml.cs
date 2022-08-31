@@ -1,6 +1,7 @@
 ﻿using ArduinoController.Utilities;
 using ArduinoController.Utilities.Configuration;
 using ArduinoController.Utilities.SettingsControls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO.Ports;
@@ -24,6 +25,10 @@ namespace ArduinoController.View.Pages
         public ObservableCollection<Pin> DigitalPins { get; set; } = new ObservableCollection<Pin>();
 
         private Dictionary<Pin, Pin> _pins = new Dictionary<Pin, Pin>();
+
+        private FunctionExecutor _functionExecutor;
+
+        private bool _isClockWorking { get; set; } = false;
 
         public ConfigPage(Config config)
         {
@@ -56,7 +61,7 @@ namespace ArduinoController.View.Pages
                 pins.Add($"{i}");
             }
 
-            ComboBoxPinType.SelectedIndex = 0;
+            //ComboBoxPinType.SelectedIndex = 0;
 
             //ComboBoxPin.ItemsSource = 
 
@@ -77,7 +82,11 @@ namespace ArduinoController.View.Pages
             _serialPort.Open();
             WriteLine($"Opened a serial port connection on \"{_serialPort.PortName}\" at {_serialPort.BaudRate} baud-rate");
 
+            _functionExecutor = new FunctionExecutor(_serialPort, this);
             //PortClock();
+
+            _isClockWorking = (bool)CheckBoxAutoChangeValues.IsChecked!;
+            _ = Clock();
         }
 
         public void Write(string text)
@@ -88,6 +97,22 @@ namespace ArduinoController.View.Pages
         public void WriteLine(string text)
         {
             Write(text + "\n");
+        }
+
+        private async Task Clock()
+        {
+            while (true)
+            {   
+                if (_isClockWorking)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        _functionExecutor.Write((int)Math.Round(SliderServoAngle.Value, 0));
+                    });
+                }
+                
+                await Task.Delay(Settings.Current.SliderValueUpdateFrequency);
+            }
         }
 
         public class Pin
@@ -125,7 +150,7 @@ namespace ArduinoController.View.Pages
             Digital
         }
 
-        private void ButtonSendToArduino_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ButtonSendToArduino_Click(object sender, RoutedEventArgs e)
         {
             // TODO: optimization checking changed pins
 
@@ -150,42 +175,83 @@ namespace ArduinoController.View.Pages
 
             _serialPort.Write("0,1,0,0".ToCharArray(), 0, 7);*/
 
-            string request = string.Empty;
+            //string request = string.Empty;
 
             // setpinmode
-            request = $"0,{TextBoxPin.Text},{ComboBoxPinType.SelectedIndex},{ComboBoxPinMode.SelectedIndex}";
+            //request = $"0,{TextBoxPin.Text},{ComboBoxPinType.SelectedIndex},{ComboBoxPinMode.SelectedIndex}";
 
-            _serialPort.Write(request);
-            Thread.Sleep(200);
+            //_serialPort.Write(request);
+            //Thread.Sleep(200);
 
             // setvalue
-            request = $"1,{TextBoxPin.Text},{ComboBoxPinType.SelectedIndex},{TextBlockValue.Text}";
-            _serialPort.Write(request);
+            //request = $"1,{TextBoxPin.Text},{ComboBoxPinType.SelectedIndex},{TextBlockValue.Text}";
+           // _serialPort.Write(request);
         }
 
         private void ButtonSaveConfig_Click(object sender, RoutedEventArgs e)
         {
             ProjectSaving.SaveConfig(Config);
         }
+        
 
-        private void ComboBoxPinMode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            LabelServoAngle.Content = SliderServoAngle.Value;
         }
 
-        private void ComboBoxPinMode_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void ButtonDetach_Click(object sender, RoutedEventArgs e)
         {
-
+            _functionExecutor.Detach();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void ButtonServoAttach_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                _functionExecutor.Attach(Convert.ToInt32(TextBoxServoAttach.Text));
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Некорректный ввод!");
+            }
         }
 
-        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        private void ButtonWriteAngle_Click(object sender, RoutedEventArgs e)
         {
+            _functionExecutor.Write((int)Math.Round(SliderServoAngle.Value, 0));
+        }
 
+        private void ButtonWriteMicroseconds_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _functionExecutor.WriteMicroseconds(Convert.ToInt32(TextBoxWriteMicroseconds.Text));
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Некорректный ввод!");
+            }
+        }
+
+        private void ButtonRead_Click(object sender, RoutedEventArgs e)
+        {
+            _functionExecutor.Read();
+        }
+
+        private void ButtonAttached_Click(object sender, RoutedEventArgs e)
+        {
+            _functionExecutor.Attached();
+        }
+
+        private async void CheckBoxAutoChangeValues_Checked(object sender, RoutedEventArgs e)
+        {
+            _isClockWorking = true;
+            //await Clock();
+        }
+
+        private void CheckBoxAutoChangeValues_Unchecked(object sender, RoutedEventArgs e)
+        {
+            _isClockWorking = false;
         }
     }
 }
